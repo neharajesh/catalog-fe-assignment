@@ -2,23 +2,30 @@ import axios from "axios";
 
 const BASE_URL = "https://coingecko.p.rapidapi.com/coins";
 const API_HEADERS = {
-  "x-rapidapi-key": process.env.RAPID_API_KEY,
-  "x-rapidapi-host": process.env.RAPID_API_HOST,
+  "x-rapidapi-key": "70a989e99cmsh683d876cae691b7p1941c2jsnefc250d4014f",
+  "x-rapidapi-host": "coingecko.p.rapidapi.com",
 };
 
 const fetchCoinsList = async () => {
   const options = {
     method: "GET",
     url: `${BASE_URL}/list`,
-    API_HEADERS,
+    headers: {
+      "x-rapidapi-key": "70a989e99cmsh683d876cae691b7p1941c2jsnefc250d4014f",
+      "x-rapidapi-host": "coingecko.p.rapidapi.com",
+    },
+    params: {
+      limit: 10,
+    },
   };
 
   try {
+    console.log("here");
     const response = await axios.request(options);
     console.log(response.data);
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.error({ error });
   }
 };
 
@@ -33,7 +40,7 @@ const fetchCoinMarkerts = async () => {
       per_page: "100",
       order: "market_cap_desc",
     },
-    API_HEADERS,
+    headers: API_HEADERS,
   };
 
   try {
@@ -57,7 +64,7 @@ const fetchCoin = async (id: any) => {
       developer_data: "true",
       sparkline: "false",
     },
-    API_HEADERS,
+    headers: API_HEADERS,
   };
 
   try {
@@ -73,7 +80,7 @@ const fetchCoinMarketChart = async (id: any) => {
   const options = {
     method: "GET",
     url: `$BASE_URL{/${id}/market_chart`,
-    API_HEADERS,
+    headers: API_HEADERS,
   };
 
   try {
@@ -99,7 +106,7 @@ const fetchCoinMarketChartRange = async (
       vs_currency: currency,
       to,
     },
-    API_HEADERS,
+    headers: API_HEADERS,
   };
 
   try {
@@ -111,10 +118,41 @@ const fetchCoinMarketChartRange = async (
   }
 };
 
+const fetchCoins1 = async () => {
+  const options = {
+    method: "GET",
+    url: "https://coinranking1.p.rapidapi.com/coins",
+    params: {
+      referenceCurrencyUuid: "yhjMzLPhuIDl",
+      timePeriod: "24h",
+      tiers: "1",
+      orderBy: "marketCap",
+      orderDirection: "desc",
+      limit: "50",
+      offset: "0",
+    },
+    headers: {
+      "x-rapidapi-key": "70a989e99cmsh683d876cae691b7p1941c2jsnefc250d4014f",
+      "x-rapidapi-host": "coinranking1.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await axios.request(options);
+    console.log(response.data);
+    return response.data.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export {
   fetchCoinsList,
   fetchCoinMarkerts,
   fetchCoin,
   fetchCoinMarketChart,
   fetchCoinMarketChartRange,
+
+  // new mock api
+  fetchCoins1,
 };

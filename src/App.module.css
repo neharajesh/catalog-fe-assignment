@@ -3,10 +3,11 @@
     height: 100vh;
     display: flex;
     justify-content: space-evenly;
+    overflow: hidden;
 }
 
 .page { 
     width: 100%;
-    background-color: antiquewhite;
-    padding: var(--mantine-spacing-lg)
+    padding: var(--mantine-spacing-lg);
+    overflow-y: scroll;
 }

@@ -13,18 +13,25 @@ import {
 } from "@tabler/icons-react";
 import classes from "./Navbar.module.css";
 import { NavbarLinkProps } from "./types";
+import { NavLink } from "react-router-dom";
 
 const navData = [
-  { icon: IconHome2, label: "Home" },
-  { icon: IconGauge, label: "Dashboard" },
-  { icon: IconDeviceDesktopAnalytics, label: "Analytics" },
-  { icon: IconCalendarStats, label: "Releases" },
-  { icon: IconUser, label: "Account" },
-  { icon: IconFingerprint, label: "Security" },
-  { icon: IconSettings, label: "Settings" },
+  { icon: IconHome2, label: "Home", to: "/" },
+  { icon: IconGauge, label: "Coins", to: "/coins" },
+  // { icon: IconDeviceDesktopAnalytics, label: "Analytics", to: "/" },
+  // { icon: IconCalendarStats, label: "Releases", to: "/" },
+  // { icon: IconUser, label: "Account", to: "/" },
+  // { icon: IconFingerprint, label: "Security", to: "/" },
+  // { icon: IconSettings, label: "Settings", to: "/" },
 ];
 
-function NavbarLink({ icon: Icon, label, active, onClick }: NavbarLinkProps) {
+function NavbarLink({
+  icon: Icon,
+  label,
+  to,
+  active,
+  onClick,
+}: NavbarLinkProps) {
   return (
     <Tooltip label={label} position="right" transitionProps={{ duration: 0 }}>
       <UnstyledButton
@@ -32,7 +39,9 @@ function NavbarLink({ icon: Icon, label, active, onClick }: NavbarLinkProps) {
         className={classes.link}
         data-active={active || undefined}
       >
-        <Icon style={{ width: rem(20), height: rem(20) }} stroke={1.5} />
+        <NavLink to={to}>
+          <Icon style={{ width: rem(20), height: rem(20) }} stroke={1.5} />
+        </NavLink>
       </UnstyledButton>
     </Tooltip>
   );
@@ -61,8 +70,8 @@ export const Navbar = () => {
       </div>
 
       <Stack justify="center" gap={10}>
-        <NavbarLink icon={IconSwitchHorizontal} label="Change account" />
-        <NavbarLink icon={IconLogout} label="Logout" />
+        <NavbarLink icon={IconSwitchHorizontal} label="Change account" to="/" />
+        <NavbarLink icon={IconLogout} label="Logout" to="/" />
       </Stack>
     </nav>
   );

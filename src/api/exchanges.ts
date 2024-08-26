@@ -10,7 +10,7 @@ const fetchExchanges = async () => {
   const options = {
     method: "GET",
     url: `${BASE_URL}`,
-    API_HEADERS,
+    headers: API_HEADERS,
   };
 
   try {
@@ -26,7 +26,7 @@ const fetchExchangeById = async (id: any) => {
   const options = {
     method: "GET",
     url: `${BASE_URL}/${id}`,
-    API_HEADERS,
+    headers: API_HEADERS,
   };
 
   try {
@@ -42,7 +42,7 @@ const fetchExchangesList = async () => {
   const options = {
     method: "GET",
     url: `${BASE_URL}/list`,
-    API_HEADERS,
+    headers: API_HEADERS,
   };
 
   try {
@@ -58,7 +58,7 @@ const fetchExchangeTickets = async (id: any) => {
   const options = {
     method: "GET",
     url: `${BASE_URL}/${id}/tickers`,
-    API_HEADERS,
+    headers: API_HEADERS,
   };
 
   try {
@@ -74,7 +74,7 @@ const fetchExchangeStatusUpdate = async (id: any) => {
   const options = {
     method: "GET",
     url: `${BASE_URL}/${id}/status_updates`,
-    API_HEADERS,
+    headers: API_HEADERS,
   };
 
   try {
