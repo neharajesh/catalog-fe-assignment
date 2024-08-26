@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchCoins1, fetchCoinsList } from "../../api";
+import { fetchCoins } from "../../api";
 import { Button, LoadingOverlay, Table, Title } from "@mantine/core";
 import { CoinType1 } from "./types";
 import { Navigate } from "react-router-dom";
@@ -40,7 +40,7 @@ export const Coins = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetchCoins1().then((res) => {
+    fetchCoins().then((res) => {
       console.log({ res });
       setCoins(res);
       setLoading(false);
