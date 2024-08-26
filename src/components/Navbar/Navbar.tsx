@@ -2,12 +2,7 @@ import { useState } from "react";
 import { Center, Tooltip, UnstyledButton, Stack, rem } from "@mantine/core";
 import {
   IconHome2,
-  IconGauge,
-  IconDeviceDesktopAnalytics,
-  IconFingerprint,
-  IconCalendarStats,
-  IconUser,
-  IconSettings,
+  IconCoinBitcoin,
   IconLogout,
   IconSwitchHorizontal,
 } from "@tabler/icons-react";
@@ -17,12 +12,7 @@ import { NavLink } from "react-router-dom";
 
 const navData = [
   { icon: IconHome2, label: "Home", to: "/" },
-  { icon: IconGauge, label: "Coins", to: "/coins" },
-  // { icon: IconDeviceDesktopAnalytics, label: "Analytics", to: "/" },
-  // { icon: IconCalendarStats, label: "Releases", to: "/" },
-  // { icon: IconUser, label: "Account", to: "/" },
-  // { icon: IconFingerprint, label: "Security", to: "/" },
-  // { icon: IconSettings, label: "Settings", to: "/" },
+  { icon: IconCoinBitcoin, label: "Coins", to: "/coins" },
 ];
 
 function NavbarLink({
@@ -53,7 +43,7 @@ export const Navbar = () => {
   return (
     <nav className={classes.navbar}>
       <Center>
-        <p>Hi</p>
+        <p>NR</p>
       </Center>
 
       <div className={classes.navbarMain}>
@@ -68,11 +58,6 @@ export const Navbar = () => {
           ))}
         </Stack>
       </div>
-
-      <Stack justify="center" gap={10}>
-        <NavbarLink icon={IconSwitchHorizontal} label="Change account" to="/" />
-        <NavbarLink icon={IconLogout} label="Logout" to="/" />
-      </Stack>
     </nav>
   );
 };
