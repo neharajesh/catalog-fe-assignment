@@ -2,8 +2,6 @@ import { Anchor, Table, Text } from "@mantine/core";
 import { CoinSummaryProps } from "./types";
 
 export const CoinSummary = ({ coin }: CoinSummaryProps) => {
-  console.log({ coin });
-
   return (
     <>
       <Text mb={20}>{coin.description} </Text>

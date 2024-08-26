@@ -49,7 +49,6 @@ export const Coins = () => {
   useEffect(() => {
     setLoading(true);
     fetchCoins().then((res) => {
-      console.log({ res });
       setCoins(res);
       setLoading(false);
     });
