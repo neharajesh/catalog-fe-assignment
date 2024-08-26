@@ -1,5 +1,9 @@
 import axios from "axios";
 
+// should have been in a .env file, having issues with deployment, will deploy fix as soon as possible
+const RAPID_API_KEY = "70a989e99cmsh683d876cae691b7p1941c2jsnefc250d4014f";
+const RAPID_API_HOST = "coinranking1.p.rapidapi.com";
+
 const fetchCoins = async () => {
   const options = {
     method: "GET",
@@ -14,14 +18,13 @@ const fetchCoins = async () => {
       offset: "0",
     },
     headers: {
-      "x-rapidapi-key": "70a989e99cmsh683d876cae691b7p1941c2jsnefc250d4014f",
-      "x-rapidapi-host": "coinranking1.p.rapidapi.com",
+      "x-rapidapi-key": RAPID_API_KEY,
+      "x-rapidapi-host": RAPID_API_HOST,
     },
   };
 
   try {
     const response = await axios.request(options);
-    console.log(response.data);
     return response.data.data;
   } catch (error) {
     console.error(error);
@@ -37,14 +40,13 @@ const fetchCoin = async (id: string) => {
       timePeriod: "24h",
     },
     headers: {
-      "x-rapidapi-key": "70a989e99cmsh683d876cae691b7p1941c2jsnefc250d4014f",
-      "x-rapidapi-host": "coinranking1.p.rapidapi.com",
+      "x-rapidapi-key": RAPID_API_KEY,
+      "x-rapidapi-host": RAPID_API_HOST,
     },
   };
 
   try {
     const response = await axios.request(options);
-    console.log(response.data);
     return response.data.data;
   } catch (error) {
     console.error(error);
@@ -60,8 +62,8 @@ const fetchCoinHistory = async (id: string, timePeriod: string) => {
       timePeriod,
     },
     headers: {
-      "x-rapidapi-key": "70a989e99cmsh683d876cae691b7p1941c2jsnefc250d4014f",
-      "x-rapidapi-host": "coinranking1.p.rapidapi.com",
+      "x-rapidapi-key": RAPID_API_KEY,
+      "x-rapidapi-host": RAPID_API_HOST,
     },
   };
 

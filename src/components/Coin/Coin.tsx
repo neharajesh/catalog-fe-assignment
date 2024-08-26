@@ -5,7 +5,6 @@ import {
   Anchor,
   Breadcrumbs,
   Flex,
-  Image,
   LoadingOverlay,
   Pill,
   Tabs,
@@ -13,7 +12,6 @@ import {
   Title,
 } from "@mantine/core";
 import { Coin as CoinType } from "./types";
-import { LineChart } from "@mantine/charts";
 import { CoinStatistics } from "./CoinStatistics";
 import { CoinSummary } from "./CoinSummary";
 import { CoinChart } from "./CoinChart";

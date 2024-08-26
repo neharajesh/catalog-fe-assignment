@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { Center, Tooltip, UnstyledButton, Stack, rem } from "@mantine/core";
-import {
-  IconHome2,
-  IconCoinBitcoin,
-  IconLogout,
-  IconSwitchHorizontal,
-} from "@tabler/icons-react";
+import { IconHome2, IconCoinBitcoin } from "@tabler/icons-react";
 import classes from "./Navbar.module.css";
 import { NavbarLinkProps } from "./types";
 import { NavLink } from "react-router-dom";
