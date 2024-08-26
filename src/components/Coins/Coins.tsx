@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
 import { fetchCoins } from "../../api";
-import { Button, LoadingOverlay, Table, Title } from "@mantine/core";
+import {
+  Anchor,
+  Breadcrumbs,
+  Button,
+  LoadingOverlay,
+  Table,
+  Title,
+} from "@mantine/core";
 import { CoinType1 } from "./types";
-import { Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import classes from "./Coins.module.css";
 
 const initialCoinsData: CoinType1 = {
   stats: {
@@ -47,8 +55,21 @@ export const Coins = () => {
     });
   }, []);
 
+  const breadcrumbsItems = [
+    { title: "Home", href: "/" },
+    { title: "Coins", href: "/coins" },
+  ];
+
   return (
     <>
+      <Breadcrumbs my={16}>
+        {breadcrumbsItems.map((item, index) => (
+          <Anchor href={item.href} key={index} size="sm">
+            {item.title}
+          </Anchor>
+        ))}
+      </Breadcrumbs>
+
       <Title order={2}>Coins</Title>
       <LoadingOverlay
         visible={loading}
@@ -57,40 +78,38 @@ export const Coins = () => {
       />
 
       {Object.keys(coins).length > 0 && (
-        <>
-          <p>Count: {coins?.stats && coins?.stats?.total} </p>
-
-          {coins && (
-            <Table>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th>No.</Table.Th>
-                  <Table.Th>Coin Name</Table.Th>
-                  <Table.Th>Symbol</Table.Th>
-                  <Table.Th>Price (in USD) </Table.Th>
-                  <Table.Th>Action</Table.Th>
+        <Table mt={16} highlightOnHover>
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th>No.</Table.Th>
+              <Table.Th>Coin Name</Table.Th>
+              <Table.Th>Symbol</Table.Th>
+              <Table.Th>Price (in USD) </Table.Th>
+              <Table.Th>Action</Table.Th>
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>
+            {coins?.coins &&
+              coins?.coins.map((coin, index) => (
+                <Table.Tr key={coin.uuid}>
+                  <Table.Td>{index + 1}</Table.Td>
+                  <Table.Td>{coin.name}</Table.Td>
+                  <Table.Td>{coin.symbol}</Table.Td>
+                  <Table.Td>{parseFloat(coin.price).toFixed(2)}</Table.Td>
+                  <Table.Td>
+                    <Button>
+                      <NavLink
+                        className={classes.navlink}
+                        to={`/coins/${coin.uuid}`}
+                      >
+                        View
+                      </NavLink>
+                    </Button>
+                  </Table.Td>
                 </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {coins?.coins &&
-                  coins?.coins.map((coin, index) => (
-                    <Table.Tr key={coin.uuid}>
-                      <Table.Td>{index + 1}</Table.Td>
-                      <Table.Td>{coin.name}</Table.Td>
-                      <Table.Td>{coin.symbol}</Table.Td>
-                      <Table.Td>{parseFloat(coin.price).toFixed(2)}</Table.Td>
-                      <Table.Td>
-                        <Button>
-                          <Navigate to={`/coins/${coin.uuid}`} />
-                          View
-                        </Button>
-                      </Table.Td>
-                    </Table.Tr>
-                  ))}
-              </Table.Tbody>
-            </Table>
-          )}
-        </>
+              ))}
+          </Table.Tbody>
+        </Table>
       )}
     </>
   );
